@@ -9,12 +9,17 @@ const initialQuestionnaire = async () => {
     const arrayQuestionnaires = [DEPORTE, TV, ARTE, GEOGRAFIA];
 
     arrayQuestionnaires.forEach(async (questionnaire) => {
+      const [questionnairesExist] = await Questionnaire.find({
+        code: questionnaire.code,
+      });
+
+      if (questionnairesExist.code === questionnaire.code) {
+        return;
+      }
+
       const quest = new Questionnaire(questionnaire);
       await quest.save();
     });
-
-    // const questionnaire1 = new Questionnaire(DEPORTE);
-    // await questionnaire1.save();
   } catch (error) {
     console.log(error);
   }

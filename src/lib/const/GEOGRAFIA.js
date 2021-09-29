@@ -1,5 +1,5 @@
 const GEOGRAFIA = {
-  id: "6146b854b36c5e4940d25ee0",
+  idUser: "6146b854b36c5e4940d25ee0",
   title: "GEOGRAFIA",
   description: "En este cuestionario vamos a ver cuando sabes sobre geografia",
   code: "TR9W51",

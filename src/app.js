@@ -9,7 +9,8 @@ const { initialQuestionnaire } = require("./lib/initialSetup");
 
 const authRouter = require("./routes/authRouter");
 const userRouter = require("./routes/userRouter");
-const questionnaireRouter = require("./routes/questionnaire");
+const questionnaireRouter = require("./routes/questionnaireRouter");
+const answerRouter = require("./routes/answerRouter");
 
 const app = express();
 
@@ -28,6 +29,7 @@ initialQuestionnaire();
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1", userRouter);
 app.use("/api/v1", questionnaireRouter);
+app.use("/api/v1", answerRouter);
 
 app.listen(config.PORT, () => {
   console.log(`App listening on port ${config.PORT}!`);

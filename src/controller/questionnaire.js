@@ -4,8 +4,6 @@ const {
   deleteQuestionnaireService,
   getQuestionnaireByIdService,
   getQuestionnaireByCodeService,
-  saveResultByUserService,
-  getAnswerByIdService,
   getAllQuestionnairesService,
 } = require("../services/questionnaire");
 
@@ -103,56 +101,6 @@ const getQuestionnaireByCode = async (req, res) => {
   return res.json(response);
 };
 
-const saveResultByUser = async (req, res) => {
-  const {
-    idQuestionnaire,
-    participantUserName,
-    date,
-    corrects,
-    inCorrects,
-    totalScore,
-    listAnswerByUser,
-  } = req.body;
-
-  console.log({
-    idQuestionnaire,
-    participantUserName,
-    date,
-    corrects,
-    inCorrects,
-    totalScore,
-    listAnswerByUser,
-  });
-
-  const response = await saveResultByUserService(
-    idQuestionnaire,
-    participantUserName,
-    date,
-    corrects,
-    inCorrects,
-    totalScore,
-    listAnswerByUser
-  );
-
-  if (response.status === "error") {
-    return res.status(500).send(response);
-  }
-
-  return res.json(response);
-};
-
-const getAnswerById = async (req, res) => {
-  const { id } = req.params;
-
-  const response = await getAnswerByIdService(id);
-
-  if (response.status === "error") {
-    return res.status(500).send(response);
-  }
-
-  return res.json(response);
-};
-
 const getAllQuestionnaires = async (req, res) => {
   const response = await getAllQuestionnairesService();
 
@@ -169,7 +117,5 @@ module.exports = {
   deleteQuestionnaire,
   getQuestionnaireById,
   getQuestionnaireByCode,
-  saveResultByUser,
-  getAnswerById,
   getAllQuestionnaires,
 };

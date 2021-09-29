@@ -1,5 +1,4 @@
 const Questionnaire = require("../models/questionnaire");
-const Answer = require("../models/answer");
 
 const createQuestionnaireService = async (
   idUser,
@@ -149,71 +148,6 @@ const getQuestionnaireByCodeService = async (code) => {
   }
 };
 
-const saveResultByUserService = async (
-  idQuestionnaire,
-  participantUserName,
-  date,
-  corrects,
-  inCorrects,
-  totalScore,
-  listAnswerByUser
-) => {
-  try {
-    const answier = new Answer({
-      idQuestionnaire,
-      participantUserName,
-      date,
-      corrects,
-      inCorrects,
-      totalScore,
-      listAnswerByUser,
-    });
-
-    console.log({ answier });
-
-    const answierCreated = await answier.save();
-
-    return {
-      status: "success",
-      answer: answierCreated,
-    };
-  } catch (error) {
-    console.log(error);
-    return {
-      status: "error",
-      message: "There was an error creating the answer",
-    };
-  }
-};
-
-const getAnswerByIdService = async (_id) => {
-  try {
-    console.log({ _id });
-
-    const answer = await Answer.findById(_id);
-
-    console.log({ answer });
-
-    if (!answer) {
-      return {
-        status: "error",
-        message: "Answer not found",
-      };
-    }
-
-    return {
-      status: "success",
-      answer,
-    };
-  } catch (error) {
-    console.log(error.message);
-    return {
-      status: "error",
-      message: "There was an error searching the answer",
-    };
-  }
-};
-
 const getAllQuestionnairesService = async () => {
   try {
     const questionnaire = await Questionnaire.find();
@@ -223,7 +157,7 @@ const getAllQuestionnairesService = async () => {
     if (!questionnaire) {
       return {
         status: "error",
-        message: "Answer not found",
+        message: "Questionnaire not found",
       };
     }
 
@@ -246,7 +180,5 @@ module.exports = {
   deleteQuestionnaireService,
   getQuestionnaireByIdService,
   getQuestionnaireByCodeService,
-  saveResultByUserService,
-  getAnswerByIdService,
   getAllQuestionnairesService,
 };

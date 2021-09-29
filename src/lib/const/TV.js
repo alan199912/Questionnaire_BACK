@@ -1,5 +1,5 @@
 const TV = {
-  id: "6146b854b36c5e4940d25ee0",
+  idUser: "6146b854b36c5e4940d25ee0",
   title: "TV",
   description:
     "En este cuestionario vamos a ver cuando sabes sobre series de TV",

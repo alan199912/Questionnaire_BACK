@@ -1,5 +1,5 @@
 const DEPORTE = {
-  id: "6146b854b36c5e4940d25ee0",
+  idUser: "6146b854b36c5e4940d25ee0",
   title: "DEPORTES",
   description: "En este cuestionario vamos a ver cuando sabes sobre deportes",
   code: "H81F3D",
