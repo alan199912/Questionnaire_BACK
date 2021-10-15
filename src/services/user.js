@@ -1,10 +1,7 @@
-// const { createQuery } = require("./createQuery");
 const User = require("../models/user");
 
 const getUserByIdService = async (id) => {
-  // console.log(`SELECT * FROM users WHERE id = ${id};`);
   try {
-    // const [user] = await createQuery(`SELECT * FROM users WHERE id = ${id}`);
     const user = await User.findById(id);
 
     if (!user) {

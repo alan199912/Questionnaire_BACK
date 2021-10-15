@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/config");
-// const { createQuery } = require("./createQuery");
 const User = require("../models/user");
 
 const generateJWT = (id) => {
@@ -29,7 +28,6 @@ const generateJWT = (id) => {
 
 const renewTokenService = async (uid) => {
   try {
-    // const user = await createQuery(`SELECT * FROM users WHERE id = ${uid};`);
     const user = await User.findById(uid);
 
     if (!user) {

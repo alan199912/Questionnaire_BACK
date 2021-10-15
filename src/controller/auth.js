@@ -57,7 +57,6 @@ const getIdByToken = (req, res, next) => {
 
   try {
     const { id } = jwt.verify(token, config.JWT_SECRET.secret);
-    // req.id = id;
 
     return res.json({ status: "success", id });
   } catch (error) {

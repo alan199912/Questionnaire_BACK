@@ -11,19 +11,6 @@ const registerUserService = async (email, username, password) => {
 
   console.log("SERVICIO", { email, username, passwordEncrypted });
 
-  // try {
-  //   await createQuery(
-  //     `INSERT INTO users (email, username, password) VALUES ('${email}', '${username}', '${passwordEncrypted}');`
-  //   );
-
-  //   return {
-  //     status: "success",
-  //     message: "User created successfully",
-  //   };
-  // } catch (error) {
-  //   return { status: "error", message: "There was an error creating the user" };
-  // }
-
   try {
     const user = new User({
       email,
@@ -44,10 +31,6 @@ const registerUserService = async (email, username, password) => {
 
 const loginUserService = async (email, password) => {
   try {
-    // const [user] = await createQuery(
-    //   `SELECT * FROM users WHERE email = '${email}';`
-    // );
-
     const user = await User.findOne({ email: email });
 
     console.log(user);
