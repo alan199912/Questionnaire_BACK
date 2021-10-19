@@ -15,6 +15,10 @@ const UserSchema = new Schema({
     type: String,
     require: true,
   },
+  status: {
+    type: Number,
+    default: 0,
+  },
 });
 
 module.exports = model("User", UserSchema);

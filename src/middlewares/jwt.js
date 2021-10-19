@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const config = require("../config/config");
+require("dotenv").config();
 
 const validateJWT = (req, res, next) => {
   const { token } = req.headers;
@@ -12,7 +12,7 @@ const validateJWT = (req, res, next) => {
   }
 
   try {
-    const { id } = jwt.verify(token, config.JWT_SECRET.secret);
+    const { id } = jwt.verify(token, process.env.JWT_SECRET);
     req.id = id;
 
     next();

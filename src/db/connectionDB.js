@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const dbConnect = async () => {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/questionnaire_db", {
+    await mongoose.connect(process.env.DB, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
@@ -16,4 +16,3 @@ const dbConnect = async () => {
 module.exports = {
   dbConnect,
 };
-// module.exports = connection;

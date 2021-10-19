@@ -1,4 +1,7 @@
-const { getUserByIdService } = require("../services/user");
+const {
+  getUserByIdService,
+  updatePasswordService,
+} = require("../services/user");
 
 const getUserById = async (req, res) => {
   const { id } = req.params;
@@ -12,4 +15,17 @@ const getUserById = async (req, res) => {
   return res.json(response);
 };
 
-module.exports = { getUserById };
+const updatePassword = async (req, res) => {
+  const { id } = req.params;
+  const { password } = req.body;
+
+  const response = await updatePasswordService(id, password);
+
+  if (response.status === "error") {
+    return res.status(500).send(response);
+  }
+
+  return res.json(response);
+};
+
+module.exports = { getUserById, updatePassword };

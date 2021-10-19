@@ -1,7 +1,11 @@
-const { registerUserService, loginUserService } = require("../services/auth");
+const {
+  registerUserService,
+  loginUserService,
+  recoveryPasswordService,
+} = require("../services/auth");
 const { renewTokenService } = require("../services/jwt");
 const jwt = require("jsonwebtoken");
-const config = require("../config/config");
+require("dotenv").config();
 
 const registerUser = async (req, res) => {
   const { email, username, password } = req.body;
@@ -56,7 +60,7 @@ const getIdByToken = (req, res, next) => {
   }
 
   try {
-    const { id } = jwt.verify(token, config.JWT_SECRET.secret);
+    const { id } = jwt.verify(token, process.env.JWT_SECRET);
 
     return res.json({ status: "success", id });
   } catch (error) {
@@ -68,4 +72,30 @@ const getIdByToken = (req, res, next) => {
   }
 };
 
-module.exports = { registerUser, loginUser, renewToken, getIdByToken };
+const recoveryPassword = async (req, res) => {
+  const { email } = req.body;
+
+  const response = await recoveryPasswordService(email);
+
+  if (response.status === "error") {
+    console.log({ response });
+    // TODO:
+    return res.status(500).send(response);
+  }
+
+  return res.send(response);
+  // res.writeHead(302, {
+  //   Location: `http://localhost:4200/auth/recovery-password/${Buffer.from(
+  //     email
+  //   ).toString("base64")}`,
+  // });
+  // res.end();
+};
+
+module.exports = {
+  registerUser,
+  loginUser,
+  renewToken,
+  getIdByToken,
+  recoveryPassword,
+};

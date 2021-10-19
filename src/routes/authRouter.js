@@ -4,6 +4,7 @@ const {
   loginUser,
   renewToken,
   getIdByToken,
+  recoveryPassword,
 } = require("../controller/auth");
 const { validateJWT } = require("../middlewares/jwt");
 
@@ -13,5 +14,6 @@ router.post("/registerUser", registerUser);
 router.post("/loginUser", loginUser);
 router.get("/renewToken", [validateJWT], renewToken);
 router.get("/getIdByToken", getIdByToken);
+router.post("/recoveryPassword", recoveryPassword);
 
 module.exports = router;
